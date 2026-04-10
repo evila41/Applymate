@@ -5,29 +5,19 @@ defineProps({
     required: true,
   },
 })
-
-const statusClasses = {
-  Applied: 'bg-slate-500 text-white',
-  Interview: 'bg-yellow-400 text-black',
-  Offer: 'bg-green-500 text-white',
-  Rejected: 'bg-red-500 text-white',
-}
 </script>
 
 <template>
-  <div class="rounded-xl bg-slate-800 p-5 shadow-md">
-    <div class="flex items-start justify-between gap-4">
+  <article class="rounded-2xl bg-slate-800 p-6 shadow-lg">
+    <div class="flex items-center justify-between">
       <div>
-        <h2 class="text-lg font-semibold">{{ application.company }}</h2>
-        <p class="text-sm text-slate-300">{{ application.role }}</p>
+        <h2 class="text-2xl font-semibold">{{ application.company }}</h2>
+        <p class="mt-1 text-slate-300">{{ application.role }}</p>
       </div>
 
-      <span
-        class="rounded-full px-4 py-1 text-sm font-medium"
-        :class="statusClasses[application.status] || 'bg-slate-600 text-white'"
-      >
+      <span class="rounded-full bg-slate-700 px-3 py-1 text-sm">
         {{ application.status }}
       </span>
     </div>
-  </div>
+  </article>
 </template>
