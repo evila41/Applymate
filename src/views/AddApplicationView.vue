@@ -1,6 +1,15 @@
 <script setup>
 import { reactive } from 'vue'
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRouter } from 'vue-router'
+
+const props = defineProps({
+  addApplication: {
+    type: Function,
+    required: true,
+  },
+})
+
+const router = useRouter()
 
 const form = reactive({
   company: '',
@@ -11,7 +20,20 @@ const form = reactive({
 })
 
 function handleSubmit() {
-  console.log('Application submitted:', form)
+  if (!form.company || !form.role || !form.status) {
+    alert('Please fill in company, role, and status.')
+    return
+  }
+
+  props.addApplication({
+    company: form.company,
+    role: form.role,
+    date: form.date,
+    status: form.status,
+    notes: form.notes,
+  })
+
+  router.push('/')
 }
 </script>
 

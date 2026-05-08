@@ -1,34 +1,17 @@
 <script setup>
-import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import ApplicationCard from '../components/ApplicationCard.vue'
 
-const applications = ref([
-  {
-    id: 1,
-    company: 'Google',
-    role: 'Frontend Developer',
-    status: 'Applied',
+defineProps({
+  applications: {
+    type: Array,
+    required: true,
   },
-  {
-    id: 2,
-    company: 'Blizzard',
-    role: 'Game Developer',
-    status: 'Rejected',
+  deleteApplication: {
+    type: Function,
+    required: true,
   },
-  {
-    id: 3,
-    company: 'Dell',
-    role: 'Web Developer',
-    status: 'Offer',
-  },
-  {
-    id: 4,
-    company: 'Microsoft',
-    role: 'Cloud Engineer',
-    status: 'Interview',
-  },
-])
+})
 </script>
 
 <template>
@@ -49,6 +32,7 @@ const applications = ref([
         v-for="application in applications"
         :key="application.id"
         :application="application"
+        :deleteApplication="deleteApplication"
       />
     </section>
   </main>
